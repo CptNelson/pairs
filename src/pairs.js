@@ -1,3 +1,4 @@
+
 let gameScene = new Phaser.Scene('Game');
 
 let config = {
@@ -20,40 +21,43 @@ gameScene.preload = function() {
 };
 
 gameScene.create = function() {
+
+    this.shuffledCards = shuffle(this.textures.getTextureKeys());
+
     this.tarotsA = [];
     this.tarotsB = [];
 
-    let cards = this.textures.getTextureKeys();
-    console.log(cards.length);
-    let x = 10;
+    let x = [10, 120, 230, 340, 450, 560];
     let y = 10;
+
     let columnCount = 0;
-    for (let c = 0; c < cards.length * 2; c++ ) {
-        console.log(x)
-        this.tarotsA[c] = this.add.sprite(x,y, cards[c])
-        x += 110;
-        this.tarotsB[c] = this.add.sprite(x,y, cards[c])
-        x += 110;
+    for (let c = 0; c < this.shuffledCards.length; c++ ) {
+
+        let tarotsAX = getRandomInt(x.length);
+        console.log("random number A: ", tarotsAX)
+        this.tarotsA[c] = this.add.sprite(x[tarotsAX],y, this.shuffledCards[c])
+        console.log("A X = ", x[tarotsAX])
+        console.log("tarot A: ", this.tarotsA[c].x)
+        x.splice(tarotsAX,1);
+        console.log("x after A: ", x, " ", y)
+
+        let tarotsBX = getRandomInt(x.length);
+        console.log("random number B: ", tarotsBX)
+        this.tarotsB[c] = this.add.sprite(x[tarotsBX],y, this.shuffledCards[c])
+        console.log("B X = ", x[tarotsBX])
+        console.log("tarot B: ", this.tarotsB[c].x)
+        x.splice(tarotsBX,1);
+        console.log("x after B: ",x, " ", y)
+
         columnCount++;
         if (columnCount > 2) {
-            console.log("col");
+            console.log("col")
             y = 210;
-            x = 10;
+            x = [10, 120, 230, 340, 450, 560];
             columnCount = 0;    
         }
     }
-/* 
-    this.tarotsA[0] = this.add.sprite(10, 10, 'card00');
-    this.tarotsB[0] = this.add.sprite(120, 10, 'card00');
-    this.tarotsA[1] = this.add.sprite(230, 10, 'card01');
-    this.tarotsB[1] = this.add.sprite(340, 10, 'card01');
-    this.tarotsA[2] = this.add.sprite(450, 10, 'card02');
-    this.tarotsB[2] = this.add.sprite(10, 210, 'card02');
-    this.tarotsA[3] = this.add.sprite(120, 210, 'card03');
-    this.tarotsB[3] = this.add.sprite(230, 210, 'card03');
-    this.tarotsA[4] = this.add.sprite(340, 210, 'card04');
-    this.tarotsB[4] = this.add.sprite(450, 210, 'card04');
- */
+
     for (c = 0; c < this.tarotsA.length; c++) {
         //console.log(this.tarotsB[c]);
         this.tarotsA[c].setOrigin(0,0);
@@ -61,5 +65,28 @@ gameScene.create = function() {
         this.tarotsB[c].setOrigin(0,0);
         this.tarotsB[c].setScale(0.5);
     }
+}
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
+function shuffle(array) {
+    let counter = array.length;
+
+    // While there are elements in the array
+    while (counter > 0) {
+        // Pick a random index
+        let index = Math.floor(Math.random() * counter);
+
+        // Decrease counter by 1
+        counter--;
+
+        // And swap the last element with it
+        let temp = array[counter];
+        array[counter] = array[index];
+        array[index] = temp;
+    }
+
+    return array;
 }
