@@ -1,0 +1,503 @@
+{
+	"textures": [
+		{
+			"image": "tarot.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 1823,
+				"h": 1918
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "tarot.png",
+					"rotated": true,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 956,
+						"h": 1821
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 956,
+						"h": 1821
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 956,
+						"h": 1821
+					}
+				},
+				{
+					"filename": "11_strength.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 203,
+						"h": 379
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 203,
+						"h": 379
+					},
+					"frame": {
+						"x": 1,
+						"y": 959,
+						"w": 203,
+						"h": 379
+					}
+				},
+				{
+					"filename": "00_fool.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 1,
+						"y": 1340,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "01_magician.png",
+					"rotated": true,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 1,
+						"y": 1717,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "02_high_priestess.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 203,
+						"y": 1340,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "03_empress.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 206,
+						"y": 959,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "04_emperor.png",
+					"rotated": true,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 378,
+						"y": 1717,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "05_pope.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 405,
+						"y": 1336,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "06_lovers.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 408,
+						"y": 959,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "07_chariot.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 607,
+						"y": 1336,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "08_justice.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 610,
+						"y": 959,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "09_hermit.png",
+					"rotated": true,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 755,
+						"y": 1713,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "10_wheel_of_fortune.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 809,
+						"y": 1336,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "12_hanged_man.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 812,
+						"y": 959,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "13_death.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 1011,
+						"y": 1336,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "14_temperance.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 1014,
+						"y": 959,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "15_devil.png",
+					"rotated": true,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 1132,
+						"y": 1713,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "16_tower.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 1213,
+						"y": 1336,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "17_star.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 1216,
+						"y": 959,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "18_moon.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 1415,
+						"y": 1336,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "19_sun.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 1418,
+						"y": 959,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "20_judgment.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 1620,
+						"y": 959,
+						"w": 200,
+						"h": 375
+					}
+				},
+				{
+					"filename": "21_world.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 200,
+						"h": 375
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 200,
+						"h": 375
+					},
+					"frame": {
+						"x": 1617,
+						"y": 1336,
+						"w": 200,
+						"h": 375
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:f63fe98e24febc6f6b81ed9c175d770d:24eff29e8b4ec4dad1e4b683ab9ddb3d:8a306bb70552919923bec7b6683a8955$"
+	}
+}
