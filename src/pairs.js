@@ -27,35 +27,44 @@ gameScene.create = function() {
     this.tarotsA = [];
     this.tarotsB = [];
 
-    let x = [10, 120, 230, 340, 450, 560];
-    let y = 10;
+    let dimensions = {
+        X: [10, 120, 230, 340, 450, 560],
+        Y: 10,
+        getX: function() { return this.X; },
+        getY: function() { return this.Y; },
+        setX: function(value) { this.X = value; },
+        setY: function(value) { this.Y = value; }
+    }
+    
+/*     let x = [10, 120, 230, 340, 450, 560];
+    let y = 10; */
 
-    let columnCount = 0;
+    let columnCount = {
+        set count(i) {
+            this.count(i)
+        },
+        count: 0
+    }
+
     for (let c = 0; c < this.shuffledCards.length; c++ ) {
 
-        let tarotsAX = getRandomInt(x.length);
+        let tarotsAX = getRandomInt(dimensions.X.length);
         console.log("random number A: ", tarotsAX)
-        this.tarotsA[c] = this.add.sprite(x[tarotsAX],y, this.shuffledCards[c])
-        console.log("A X = ", x[tarotsAX])
-        console.log("tarot A: ", this.tarotsA[c].x)
-        x.splice(tarotsAX,1);
-        console.log("x after A: ", x, " ", y)
+        this.tarotsA[c] = this.add.sprite(dimensions.X[tarotsAX],dimensions.Y, this.shuffledCards[c])
+        //console.log("A X = ", x[tarotsAX])
+        //console.log("tarot A: ", this.tarotsA[c].x)
+        dimensions.X.splice(tarotsAX,1);
+        //console.log("x after A: ", x, " ", y)
 
-        let tarotsBX = getRandomInt(x.length);
-        console.log("random number B: ", tarotsBX)
-        this.tarotsB[c] = this.add.sprite(x[tarotsBX],y, this.shuffledCards[c])
-        console.log("B X = ", x[tarotsBX])
-        console.log("tarot B: ", this.tarotsB[c].x)
-        x.splice(tarotsBX,1);
-        console.log("x after B: ",x, " ", y)
+        let tarotsBX = getRandomInt(dimensions.X.length);
+        //console.log("random number B: ", tarotsBX)
+        this.tarotsB[c] = this.add.sprite(dimensions.X[tarotsBX],dimensions.Y, this.shuffledCards[c])
+        //console.log("B X = ", x[tarotsBX])
+        //console.log("tarot B: ", this.tarotsB[c].x)
+        dimensions.X.splice(tarotsBX,1);
+        //console.log("x after B: ",x, " ", y)
 
-        columnCount++;
-        if (columnCount > 2) {
-            console.log("col")
-            y = 210;
-            x = [10, 120, 230, 340, 450, 560];
-            columnCount = 0;    
-        }
+        columnCounter(columnCount,dimensions);
     }
 
     for (c = 0; c < this.tarotsA.length; c++) {
@@ -65,6 +74,23 @@ gameScene.create = function() {
         this.tarotsB[c].setOrigin(0,0);
         this.tarotsB[c].setScale(0.5);
     }
+}
+
+//Set scale and origin for images
+
+
+//checks if there is enough columns to start a new row. 
+//If so, Y is changed to higher number, and X is initialized back to starting array.
+function columnCounter(counter,dimensions) {
+    counter.count = counter.count + 1;
+    console.log("counter: ",counter.count)
+    if (counter.count > 2) {
+        //console.log("col")
+        dimensions.setY(210);
+        dimensions.setX([10, 120, 230, 340, 450, 560]);
+        counter.count = 0;    
+    }
+    //console.log(dimensions.getY(), " ", dimensions.getX())
 }
 
 function getRandomInt(max) {
