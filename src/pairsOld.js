@@ -12,6 +12,7 @@ let config = {
 //create the game and pass it the configuration
 let game = new Phaser.Game(config);
 
+
 gameScene.preload = function() {
     this.load.multiatlas('tarots','assets/tarots.json', 'assets');
 };

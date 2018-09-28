@@ -13,10 +13,10 @@ let game = new Phaser.Game(config);
 //create arrays to store names of the cards, and their positions.
 let cardNames = [];
 let cardPositions = [];
-let cardCounter = 4;
+let cardCounter = 44;
 let whosTurn = "Player One's"
 gameScene.player = [0, 0]
-gameScene.scoreText = [0,0]
+gameScene.scoreText = [0, 0]
 
 
 gameScene.preload = function () {
@@ -27,9 +27,18 @@ gameScene.create = function () {
     gameScene.storeAllCoordinates();
     gameScene.createNamesForCards();
     gameScene.dealCardsToTable();
-    gameScene.scoreText[0] = this.add.text(25, 307, '0', { fontSize: '40px', fill: '#0000FF' });
-    gameScene.scoreText[1] = this.add.text(1015, 307, '0', { fontSize: '40px', fill: '#FF0000' });
-    gameScene.turnText = this.add.text(270, 660, "It's " + whosTurn + " turn.", { fontSize: '40px', fill: '#0000FF' });
+    gameScene.scoreText[0] = this.add.text(25, 307, '0', {
+        fontSize: '40px',
+        fill: '#0000FF'
+    });
+    gameScene.scoreText[1] = this.add.text(1015, 307, '0', {
+        fontSize: '40px',
+        fill: '#FF0000'
+    });
+    gameScene.turnText = this.add.text(270, 660, "It's " + whosTurn + " turn.", {
+        fontSize: '40px',
+        fill: '#0000FF'
+    });
     gameScene.takingTurns();
 }
 
@@ -170,12 +179,15 @@ gameScene.takingTurns = function () {
         if (cardCounter == 0) {
             gameScene.turnText.destroy();
             gameScene.gameOverText = gameScene.getGameOverText();
-            gameScene.add.text(115, 307, gameScene.gameOverText, { fontSize: '40px', fill: '#000' });
+            gameScene.add.text(115, 307, gameScene.gameOverText, {
+                fontSize: '40px',
+                fill: '#000'
+            });
         } else return;
     }
 }
 
-gameScene.getGameOverText = function() {
+gameScene.getGameOverText = function () {
     if (gameScene.player[0] > gameScene.player[1]) {
         console.log(gameScene.player[0])
         return 'Game Over! Player One is the winner!'
