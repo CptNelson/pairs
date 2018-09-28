@@ -3,7 +3,7 @@ let gameScene = new Phaser.Scene('Game');
 let config = {
     type: Phaser.Auto, //Let the browser choose if using webGL or canvas
     width: 1090,
-    height: 650,
+    height: 700,
     scene: gameScene,
     backgroundColor: 0xFFFFFF
 };
@@ -13,9 +13,11 @@ let game = new Phaser.Game(config);
 //create arrays to store names of the cards, and their positions.
 let cardNames = [];
 let cardPositions = [];
-this.player = [1, 2]
-player[0].score = 0;
-player[1].score = 0;
+let cardCounter = 4;
+let whosTurn = "Player One's"
+gameScene.player = [0, 0]
+gameScene.scoreText = [0,0]
+
 
 gameScene.preload = function () {
     this.load.multiatlas('tarots', 'assets/tarots.json', 'assets');
@@ -25,6 +27,9 @@ gameScene.create = function () {
     gameScene.storeAllCoordinates();
     gameScene.createNamesForCards();
     gameScene.dealCardsToTable();
+    gameScene.scoreText[0] = this.add.text(25, 307, '0', { fontSize: '40px', fill: '#0000FF' });
+    gameScene.scoreText[1] = this.add.text(1015, 307, '0', { fontSize: '40px', fill: '#FF0000' });
+    gameScene.turnText = this.add.text(270, 660, "It's " + whosTurn + " turn.", { fontSize: '40px', fill: '#0000FF' });
     gameScene.takingTurns();
 }
 
@@ -93,6 +98,9 @@ gameScene.takingTurns = function () {
                 state = 'player1B';
                 break;
             case 'player1B':
+                if (tempCardA == gameObject) {
+                    return;
+                }
                 gameObject.clearTint();
                 tempCardB = gameObject;
                 console.log("player1B: ", tempCardB.frame.customData.filename);
@@ -105,6 +113,9 @@ gameScene.takingTurns = function () {
                 state = 'player2B';
                 break;
             case 'player2B':
+                if (tempCardA == gameObject) {
+                    return;
+                }
                 tempCardB = gameObject;
                 gameObject.clearTint();
                 console.log("player2B: ", tempCardB.frame.customData.filename);
@@ -121,28 +132,54 @@ gameScene.takingTurns = function () {
 
         setTimeout(function () {
             if (tempCardA.frame.customData.filename == tempCardB.frame.customData.filename) {
-                this.player[player].score++;
-
+                gameScene.player[player]++;
+                console.log(gameScene.player[player])
+                gameScene.scoreText[player].setText("" + gameScene.player[player]);
                 destroyCards(tempCardA, tempCardB);
                 if (oldState == 'player1B') {
                     state = 'player1A';
-                } else state = 'player2A';
+                } else {
+                    state = 'player2A';
+                    gameScene.turnText.setText("It's Player Two's turn.");
+                }
             } else {
+                tempCardA.tint = 00000;
+                tempCardB.tint = 00000;
                 state = 'waiting';
                 if (oldState == 'player1B') {
                     console.log("turn")
+                    gameScene.turnText.setText("It's Player Two's turn.");
+                    gameScene.turnText.setColor('#FF0000')
                     state = 'player2A'
                 } else {
                     console.log("turn")
+                    gameScene.turnText.setText("It's Player One's turn.");
+                    gameScene.turnText.setColor('#0000FF')
                     state = 'player1A'
                 }
             }
-        }, 1200);
+        }, 2000);
     }
     destroyCards = function (cardA, cardB) {
         cardA.destroy();
         cardB.destroy();
+        checkIfGameOver();
     }
+    checkIfGameOver = function () {
+        cardCounter--;
+        if (cardCounter == 0) {
+            gameScene.turnText.destroy();
+            gameScene.gameOverText = gameScene.getGameOverText();
+            gameScene.add.text(115, 307, gameScene.gameOverText, { fontSize: '40px', fill: '#000' });
+        } else return;
+    }
+}
+
+gameScene.getGameOverText = function() {
+    if (gameScene.player[0] > gameScene.player[1]) {
+        console.log(gameScene.player[0])
+        return 'Game Over! Player One is the winner!'
+    } else return 'Game Over! Player Two is the winner'
 }
 
 function getRandomInt(max) {
