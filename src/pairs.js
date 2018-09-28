@@ -14,6 +14,9 @@ let game = new Phaser.Game(config);
 //create arrays to store names of the cards, and their positions.
 let cardNames = [];
 let cardPositions = [];
+this.player = [1,2]
+player[0].score = 0;
+player[1].score = 0;
 
 gameScene.preload = function() {
     this.load.multiatlas('tarots','assets/tarots.json', 'assets');
@@ -23,6 +26,7 @@ gameScene.create = function() {
     gameScene.storeAllCoordinates();
     gameScene.createNamesForCards();
     gameScene.dealCardsToTable();
+    gameScene.takingTurns();
 }
 
 //populates array cardNames with running, two-digit numbers as strings twice,
@@ -74,7 +78,74 @@ gameScene.storeAllCoordinates = function() {
     }
 }
 
+gameScene.takingTurns = function() {
+    let state = 'player1A';
+    let tempCardA, tempCardB;
+    gameScene.input.on('gameobjectdown', function (pointer, gameObject) {
+        
+        switch(state) {
+            case 'player1A': 
+                tempCardA = gameObject;
+                console.log("player1A: ", tempCardA.frame.customData.filename);
+                state = 'player1B';
+                break;
+            case 'player1B':
+                tempCardB = gameObject;
+                console.log("player1B: ", tempCardB.frame.customData.filename);
+                checkingForPoint(0, state);
+                break;
+            case 'player2A': 
+                tempCardA = gameObject;
+                console.log("player2A: ", tempCardA.frame.customData.filename);
+                state = 'player2B';
+                break;
+            case 'player2B':
+                tempCardB = gameObject;
+                console.log("player2B: ", tempCardB.frame.customData.filename);
+                checkingForPoint(1, state);
+                break;
+            case 'waiting':
+                console.log("waiting");
+            default: 
+                console.log("error!")
+        }
+    })
+    checkingForPoint = function(player, oldState) {
+        if (tempCardA.frame.customData.filename == tempCardB.frame.customData.filename) {
+            this.player[player].score++;
+            state = 'waiting';
+            destroyCards(tempCardA, tempCardB);
+            if (oldState == 'player1B') {
+                state = 'player1A';
+            } else state = 'player2A';
+        } else {
+            state = 'waiting';
+            sleep(2000);
+            if (oldState == 'player1B') {
+                console.log("turn")
+                state = 'player2A'
+            } else {
+                console.log("turn")
+                state = 'player1A'
+            }
+        }
+    }
+    destroyCards = function(cardA, cardB) {
+        sleep(1200);
+        cardA.destroy();
+        cardB.destroy();
+    }
+}
+
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
+function sleep(milliseconds) {
+  let start = new Date().getTime();
+  for (let i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
