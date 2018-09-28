@@ -103,7 +103,6 @@ gameScene.takingTurns = function () {
             case 'player1A':
                 gameObject.clearTint();
                 tempCardA = gameObject;
-                console.log("player1A: ", tempCardA.frame.customData.filename);
                 state = 'player1B';
                 break;
             case 'player1B':
@@ -112,13 +111,11 @@ gameScene.takingTurns = function () {
                 }
                 gameObject.clearTint();
                 tempCardB = gameObject;
-                console.log("player1B: ", tempCardB.frame.customData.filename);
                 checkingForPoint(0, state);
                 break;
             case 'player2A':
                 tempCardA = gameObject;
                 gameObject.clearTint();
-                console.log("player2A: ", tempCardA.frame.customData.filename);
                 state = 'player2B';
                 break;
             case 'player2B':
@@ -127,13 +124,12 @@ gameScene.takingTurns = function () {
                 }
                 tempCardB = gameObject;
                 gameObject.clearTint();
-                console.log("player2B: ", tempCardB.frame.customData.filename);
                 checkingForPoint(1, state);
                 break;
             case 'waiting':
-                console.log("waiting");
+                return;
             default:
-                console.log("error!")
+                return;
         }
     })
     checkingForPoint = function (player, oldState) {
@@ -142,7 +138,6 @@ gameScene.takingTurns = function () {
         setTimeout(function () {
             if (tempCardA.frame.customData.filename == tempCardB.frame.customData.filename) {
                 gameScene.player[player]++;
-                console.log(gameScene.player[player])
                 gameScene.scoreText[player].setText("" + gameScene.player[player]);
                 destroyCards(tempCardA, tempCardB);
                 if (oldState == 'player1B') {
@@ -156,12 +151,10 @@ gameScene.takingTurns = function () {
                 tempCardB.tint = 00000;
                 state = 'waiting';
                 if (oldState == 'player1B') {
-                    console.log("turn")
                     gameScene.turnText.setText("It's Player Two's turn.");
                     gameScene.turnText.setColor('#FF0000')
                     state = 'player2A'
                 } else {
-                    console.log("turn")
                     gameScene.turnText.setText("It's Player One's turn.");
                     gameScene.turnText.setColor('#0000FF')
                     state = 'player1A'
@@ -189,7 +182,6 @@ gameScene.takingTurns = function () {
 
 gameScene.getGameOverText = function () {
     if (gameScene.player[0] > gameScene.player[1]) {
-        console.log(gameScene.player[0])
         return 'Game Over! Player One is the winner!'
     } else return 'Game Over! Player Two is the winner'
 }
