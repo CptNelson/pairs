@@ -5,12 +5,16 @@ let config = {
     width: 1090,
     height: 700,
     scene: gameScene,
-    backgroundColor: 0xFFFFFF
+    backgroundColor: 0xFFFFFF,
+    parent: 'phaser'
 };
 
 //create the game and pass it the configuration
 let game = new Phaser.Game(config);
-//create arrays to store names of the cards, and their positions.
+//create arrays to store names of the cards, and their positions. 
+//cardCounter will keep track of how many cards are left on table,
+//so the game knows when it's over.
+//player[] keeps the score.
 let cardNames = [];
 let cardPositions = [];
 let cardCounter = 44;
@@ -43,7 +47,7 @@ gameScene.create = function () {
 }
 
 //populates array cardNames with running, two-digit numbers as strings twice,
-//so there is two of every number.
+//so there is two of every number. 
 gameScene.createNamesForCards = function () {
     for (let i = 0; i < 22; i++) {
         let j = ("0" + i).slice(-2);
@@ -54,6 +58,8 @@ gameScene.createNamesForCards = function () {
 gameScene.dealCardsToTable = function () {
     for (let i = 0; i < cardNames.length; i++) {
         let r = getRandomInt(cardPositions.length);
+        //We add the cards at random positions, make them interactive and add black tint to them. Finally we delete the
+        //used position so it won't come again.
         gameScene.add.image(cardPositions[r].x, cardPositions[r].y, 'tarots', cardNames[i]).setInteractive().tint = 00000;
         cardPositions.splice(r, 1);
     }
@@ -68,7 +74,7 @@ gameScene.storeCoordinate = function (xVal, yVal, array) {
 }
 
 //this uses storeCoordinate to populate array cardPositions with all the coordinates
-//we are using in the table.
+//we are using in the table. Using switch we create different combinations of rows.
 gameScene.storeAllCoordinates = function () {
     let x = 10;
     let y = 10;
@@ -94,6 +100,7 @@ gameScene.storeAllCoordinates = function () {
     }
 }
 
+//tempCards keep temporary notion of card (gameObject) clicked. 
 gameScene.takingTurns = function () {
     let state = 'player1A';
     let tempCardA, tempCardB;
@@ -134,7 +141,6 @@ gameScene.takingTurns = function () {
     })
     checkingForPoint = function (player, oldState) {
         state = "waiting"
-
         setTimeout(function () {
             if (tempCardA.frame.customData.filename == tempCardB.frame.customData.filename) {
                 gameScene.player[player]++;
