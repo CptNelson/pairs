@@ -5,7 +5,7 @@ let config = {
     width: 1090,
     height: 700,
     scene: gameScene,
-    backgroundColor: 0xFFFFFF,
+    backgroundColor: 0xfffaf0,
     parent: 'phaser'
 };
 
