@@ -15,10 +15,10 @@ let game = new Phaser.Game(config);
 //cardCounter will keep track of how many cards are left on table,
 //so the game knows when it's over.
 //player[] keeps the score.
-let cardNames = [];
-let cardPositions = [];
-let cardCounter = 44;
-let whosTurn = "Player One's"
+gameScene.cardNames = [];
+gameScene.cardPositions = [];
+gameScene.cardCounter = 44;
+gameScene.whosTurn = "Player One's"
 gameScene.player = [0, 0]
 gameScene.scoreText = [0, 0]
 
@@ -39,7 +39,7 @@ gameScene.create = function () {
         fontSize: '40px',
         fill: '#FF0000'
     });
-    gameScene.turnText = this.add.text(270, 660, "It's " + whosTurn + " turn.", {
+    gameScene.turnText = this.add.text(270, 660, "It's " + gameScene.whosTurn + " turn.", {
         fontSize: '40px',
         fill: '#0000FF'
     });
@@ -51,17 +51,17 @@ gameScene.create = function () {
 gameScene.createNamesForCards = function () {
     for (let i = 0; i < 22; i++) {
         let j = ("0" + i).slice(-2);
-        cardNames.push(j, j);
+        gameScene.cardNames.push(j, j);
     }
 }
 
 gameScene.dealCardsToTable = function () {
-    for (let i = 0; i < cardNames.length; i++) {
-        let r = getRandomInt(cardPositions.length);
+    for (let i = 0; i < gameScene.cardNames.length; i++) {
+        let r = getRandomInt(gameScene.cardPositions.length);
         //We add the cards at random positions, make them interactive and add black tint to them. Finally we delete the
         //used position so it won't come again.
-        gameScene.add.image(cardPositions[r].x, cardPositions[r].y, 'tarots', cardNames[i]).setInteractive().tint = 00000;
-        cardPositions.splice(r, 1);
+        gameScene.add.image(gameScene.cardPositions[r].x, gameScene.cardPositions[r].y, 'tarots', gameScene.cardNames[i]).setInteractive().tint = 00000;
+        gameScene.cardPositions.splice(r, 1);
     }
 }
 
@@ -80,7 +80,7 @@ gameScene.storeAllCoordinates = function () {
     let y = 10;
     let j = 0;
     for (let i = 0; i < 44; i++) {
-        gameScene.storeCoordinate(x, y, cardPositions)
+        gameScene.storeCoordinate(x, y, gameScene.cardPositions)
         x += 90;
         j++;
         switch (j) {
@@ -174,8 +174,8 @@ gameScene.takingTurns = function () {
         checkIfGameOver();
     }
     checkIfGameOver = function () {
-        cardCounter--;
-        if (cardCounter == 0) {
+        gameScene.cardCounter--;
+        if (gameScene.cardCounter == 0) {
             gameScene.turnText.destroy();
             gameScene.gameOverText = gameScene.getGameOverText();
             gameScene.add.text(115, 307, gameScene.gameOverText, {
